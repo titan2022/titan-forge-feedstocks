@@ -23,7 +23,7 @@ extra_cmake_args=(
     -D BUILD_EXAMPLES=OFF
 )
 
-cmake -GNinja "${CMAKE_ARGS}" "${extra_cmake_args[@]}" \
+cmake -GNinja ${CMAKE_ARGS} "${extra_cmake_args[@]}" \
     -DCMAKE_PREFIX_PATH="$PREFIX" \
     -DCMAKE_INSTALL_PREFIX="$PREFIX" \
     "$SRC_DIR/opencv"
