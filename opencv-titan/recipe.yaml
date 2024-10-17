@@ -1,0 +1,122 @@
+# Includes parts of https://github.com/conda-forge/opencv-feedstock/blob/main/recipe/meta.yaml
+# but mostly written from scratch
+
+context:
+  version: "4.10.0"
+
+package:
+  name: opencv-titan
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/opencv/opencv/archive/refs/tags/${{ version }}.zip
+    target_directory: opencv
+    sha256: 3810bca2b1d1c572912df0ac3888126341f3762dfd28e91068c805fb656d0e51
+  - url: https://github.com/opencv/opencv_contrib/archive/refs/tags/${{ version }}.zip
+    target_directory: opencv_contrib
+    sha256: 15b1decfa4d2eaf3b39148eff4f311739fdb32f0dcce58e7edb3e95a560ccbd3
+
+
+build:
+  script: opencl-build.sh
+
+requirements:
+  build:
+    - python                                 # [build_platform != target_platform]
+    - if: build_platform != target_platform
+      then: cross-python_${{ target_platform }}     # [build_platform != target_platform]
+    - numpy                                  # [build_platform != target_platform]
+    - libprotobuf                            # [build_platform != target_platform]
+    - qt6-main                               # [build_platform != target_platform and qt_version == 6]
+    # pkg-config is required to find ffpmeg
+    - pkg-config
+    - cmake
+    - ninja
+    - if: linux
+      then: libgomp
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('fortran') }}
+  host:
+    - libgl-devel                        # [linux and (qt_version == 5 or qt_version == 6)]
+    - libegl-devel                       # [linux and (qt_version == 5 or qt_version == 6)]
+    - python
+    - numpy
+    # I'm not sure why the conda-forge packagers pinned this version.
+    - eigen =3.4.0
+    # Specify lgpl version of ffmpeg so that there are
+    # no quesitons about the license of the resulting opencv
+    # binary
+    - ffmpeg * lgpl_*
+    - freetype
+    # harfbuzz, glib, gettext are both needed for freetype support
+    - harfbuzz
+    - gettext
+    - glib
+    - hdf5
+    - jasper
+    - libcblas
+    - libiconv                       # [unix]
+    - libjpeg-turbo
+    - liblapack
+    - liblapacke
+    - libpng
+    - libprotobuf
+    - libtiff
+    - libwebp
+    - openexr
+    # - qt-main                        # [qt_version == 5]
+    - qt6-main                       # [qt_version == 6]
+    - zlib
+    - libopenvino-dev                # [not ppc64le]
+    - gstreamer
+    - glew
+    - tbb
+    - libtheora
+    - libvorbis
+    - tesseract
+    - libblas # https://conda-forge.org/docs/maintainer/knowledge_base/#knowledge-blas
+    - liblapack
+    - liblapacke
+    - hdf5
+    - protobuf
+    - glog
+    - gflags
+      # https://conda-forge.org/docs/maintainer/knowledge_base/#openmp
+    - if: osx
+      then: llvm-openmp
+    - if: linux
+      then: libgomp
+    - ${{ stdlib('c') }}
+    
+    # Other optional dependencies we didn't include: libxvidcore, x264, dc1394, 
+    # libxine, librealsense, libv4l, libopencore-amrnb, libopencore-amrwb,
+    # 
+    # We will want to enable librealsense, libv4l later
+
+# tests:
+#   - package_contents:
+#       include: 
+
+
+#         - xtensor/xarray.hpp
+#       files: 
+
+
+#         - ${{ "Library" if win }}/share/cmake/xtensor/xtensorConfig.cmake
+#         - ${{ "Library" if win }}/share/cmake/xtensor/xtensorConfigVersion.cmake
+
+about:
+  homepage: https://opencv.org/
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Open Source Computer Vision Library
+  description: Open Source Computer Vision Library
+  documentation: https://docs.opencv.org/4.10.0/
+  repository: https://github.com/opencv/opencv
+
+extra:
+  recipe-maintainers:
+    - ethanc8
+
