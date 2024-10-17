@@ -23,7 +23,7 @@ extra_cmake_args=(
     -D BUILD_EXAMPLES=OFF
 )
 
-cmake "${CMAKE_ARGS}" "${extra_cmake_args[@]}" \
+cmake -GNinja "${CMAKE_ARGS}" "${extra_cmake_args[@]}" \
     -DCMAKE_PREFIX_PATH="$PREFIX" \
     -DCMAKE_INSTALL_PREFIX="$PREFIX" \
     "$SRC_DIR/opencv"
@@ -32,5 +32,6 @@ cmake "${CMAKE_ARGS}" "${extra_cmake_args[@]}" \
 # -D WITH_LIBV4L=ON
 
 ninja
+ninja install
 
 
