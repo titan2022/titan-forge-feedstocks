@@ -1,3 +1,5 @@
+# Includes some stuff from https://github.com/conda-forge/opencv-feedstock/blob/main/recipe/build.sh
+
 mkdir build
 cd build
 
@@ -22,6 +24,12 @@ extra_cmake_args=(
     -D OPENCV_GENERATE_PKGCONFIG=ON
     -D BUILD_EXAMPLES=OFF
 )
+
+
+if [[ "${target_platform}" != "${build_platform}" ]]; then
+    extra_cmake_args+=("-DProtobuf_PROTOC_EXECUTABLE=$BUILD_PREFIX/bin/protoc")
+    extra_cmake_args+=("-DQT_HOST_PATH=${BUILD_PREFIX}")
+fi
 
 cmake -GNinja ${CMAKE_ARGS} "${extra_cmake_args[@]}" \
     -DCMAKE_PREFIX_PATH="$PREFIX" \
