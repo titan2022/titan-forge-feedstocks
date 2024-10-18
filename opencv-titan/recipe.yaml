@@ -110,7 +110,7 @@ requirements:
 about:
   homepage: https://opencv.org/
   license: Apache-2.0
-  license_file: LICENSE
+  # license_file: LICENSE
   summary: Open Source Computer Vision Library
   description: Open Source Computer Vision Library
   documentation: https://docs.opencv.org/4.10.0/
