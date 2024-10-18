@@ -1,3 +1,4 @@
+#!/bin/bash
 # Includes some stuff from https://github.com/conda-forge/opencv-feedstock/blob/main/recipe/build.sh
 
 mkdir build
@@ -23,6 +24,17 @@ extra_cmake_args=(
     -D INSTALL_PYTHON_EXAMPLES=OFF
     -D OPENCV_GENERATE_PKGCONFIG=ON
     -D BUILD_EXAMPLES=OFF
+    -DOPENCV_ENABLE_PKG_CONFIG=1                                          
+    -DOPENCV_PYTHON_PIP_METADATA_INSTALL=ON                               
+    -DOPENCV_PYTHON_PIP_METADATA_INSTALLER:STRING="conda"                 
+    -DBUILD_opencv_python3=1                                              
+    -DPYTHON3_EXECUTABLE="${PYTHON}"                                        
+    -DPYTHON3_INCLUDE_DIR="${INC_PYTHON}"                                   
+    -DPYTHON3_NUMPY_INCLUDE_DIRS="$(python -c 'import numpy;print(numpy.get_include())')  "
+    -DPYTHON3_LIBRARY="${LIB_PYTHON}"                                       
+    -DPYTHON3_PACKAGES_PATH="${SP_DIR}"                              
+    -DOPENCV_PYTHON3_INSTALL_PATH="${SP_DIR}"                               
+    -DBUILD_opencv_python2=0                                              
 )
 
 
