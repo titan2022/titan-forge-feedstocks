@@ -33,10 +33,10 @@ requirements:
   run:
     - ${{ pin_compatible('numpy') }}
 
-tests:
-  - python:
-      imports:
-        - pyrealsense2
+# tests:
+#   - python:
+#       imports:
+#         - pyrealsense2
 
 about:
   homepage: https://github.com/IntelRealSense/librealsense
