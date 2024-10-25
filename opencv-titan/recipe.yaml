@@ -96,6 +96,11 @@ requirements:
     # 
     # We will want to enable librealsense, libv4l later
 
+tests:
+  - python:
+      imports:
+        - cv2
+
 # tests:
 #   - package_contents:
 #       include: 
