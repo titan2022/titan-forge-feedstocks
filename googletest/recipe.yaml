@@ -19,10 +19,8 @@ requirements:
     - ${{ compiler('c') }}
     - ${{ compiler('cxx') }}
     - ${{ stdlib('c') }}
-    - ${{ stdlib('cxx') }}
   run:
     - ${{ stdlib('c') }}
-    - ${{ stdlib('cxx') }}
 
 about:
   homepage: https://github.com/google/googletest
