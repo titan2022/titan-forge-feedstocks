@@ -9,7 +9,7 @@ package:
 
 source:
   - url: https://github.com/google/googletest/archive/${{ commit }}.tar.gz
-    sha256: 307ccaebc77e0acd19d1d09fe856278a66d1936269a999d40accdb46ec3ab6a4
+    sha256: 2bfa2a04c999741054f61f34ac43f8fce80458698aa385c52df15d762daf4cbd
 
 build:
   script: build-googletest.sh
