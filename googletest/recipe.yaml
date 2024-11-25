@@ -1,0 +1,35 @@
+context:
+  name: googletest
+  version: 2024.11.20
+  commit: 35d0c365609296fa4730d62057c487e3cfa030ff
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/google/googletest/archive/${{ commit }}.tar.gz
+    sha256: 307ccaebc77e0acd19d1d09fe856278a66d1936269a999d40accdb46ec3ab6a4
+
+build:
+  script: build-googletest.sh
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - ${{ stdlib('cxx') }}
+  run:
+    - ${{ stdlib('c') }}
+    - ${{ stdlib('cxx') }}
+
+about:
+  homepage: https://github.com/google/googletest
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Google testing and mocking framework
+
+extra:
+  recipe-maintainers:
+    - ethanc8
