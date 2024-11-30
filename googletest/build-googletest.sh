@@ -6,7 +6,8 @@ cd build
 extra_cmake_args=(
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_LIBDIR=lib
-    -DCMAKE_VERBOSE_MAKEFILE=ON                                          
+    -DCMAKE_VERBOSE_MAKEFILE=ON
+    -DGTEST_CREATE_SHARED_LIBRARY=1
 )
 
 cmake -GNinja ${CMAKE_ARGS} "${extra_cmake_args[@]}" \
