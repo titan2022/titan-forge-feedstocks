@@ -16,11 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: trigger Job
-      uses: ghcr.io/appleboy/gitlab-ci-action@v1.3.0
-      with:
-        host: "http://example.com"
-        token: ${{ secrets.TOKEN }}
-        project_id: 100
+        uses: ghcr.io/appleboy/gitlab-ci-action@v1.3.0
+        with:
+          host: "http://gitlab.com"
+          token: ${{ secrets.GITLAB_PIPELINE_TRIGGER_TOKEN }}
+          project_id: 66078136
 
   build:
     strategy:
