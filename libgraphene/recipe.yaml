@@ -1,0 +1,66 @@
+context:
+  name: graphene
+  version: 1.10.8
+
+  # For the tests
+  pc: graphene-1.0
+  lib: graphene-1.0
+  gi: Graphene-1.0
+
+package:
+    # graphene is already taken by an unrelated python package
+    name: "lib${{ name }}"
+    version: ${{ version }}
+
+source:
+    url: https://github.com/ebassi/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
+    sha256: 922dc109d2dc5dc56617a29bd716c79dd84db31721a8493a13a5f79109a4a4ed
+
+build:
+  number: 2
+  script: build-graphene.sh
+
+requirements:
+  build:
+    - pkg-config
+    - ${{ compiler('c') }}
+    - meson
+    - ninja
+    - gobject-introspection
+    # for native build prior to cross build
+    - glib        # [build_platform != target_platform]
+  host:
+    - glib
+  run:
+    - libglib
+
+tests:
+  - script:
+      # verify that libs get installed and can be located through pkg-config
+      - if: unix
+        then:
+        - "test -f $PREFIX/lib/lib${{ lib }}${SHLIB_EXT}"  # [unix]
+        - "test -f `pkg-config --variable=libdir --dont-define-prefix ${{ pc }}`/lib${{ lib }}${SHLIB_EXT}"  # [unix]
+        - "test -f $PREFIX/lib/girepository-1.0/${{ gi }}.typelib"  # [unix]
+      - if: win
+        then:
+        - "if not exist %PREFIX%\\Library\\bin\\${{ lib }}-0.dll exit 1"  # [win]
+        - for /f "usebackq tokens=*" %%a in (`pkg-config --variable=exec_prefix --dont-define-prefix ${{ pc }}`) do if not exist "%%a/bin/${{ lib }}-0.dll" exit 1  # [win]
+        - "if not exist %PREFIX%\\Library\\lib\\${{ lib }}.lib exit 1"  # [win]
+        - for /f "usebackq tokens=*" %%a in (`pkg-config --variable=libdir --dont-define-prefix ${{ pc }}`) do if not exist "%%a/${{ lib }}.lib" exit 1  # [win]
+        - "if not exist %PREFIX%\\Library\\lib\\girepository-1.0\\${{ gi }}.typelib exit 1"   # [win]
+    
+    requirements:
+      run:
+        - pkg-config
+        - pygobject
+
+about:
+  homepage: https://github.com/ebassi/graphene
+  license: MIT
+  license_file: LICENSE.txt
+  summary: "A thin layer of types for graphic libraries"
+
+extra:
+  recipe-maintainers:
+    - ethanc8
