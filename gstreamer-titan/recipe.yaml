@@ -24,6 +24,8 @@ about:
 build:
   number: 0
   script: build-gstreamer.sh
+  skip:
+    - linux-aarch64
       
 
 requirements:
@@ -88,7 +90,7 @@ requirements:
     - libgraphene
     - libiconv
     - libxml2
-    - flite-dev
+    # - flite-dev
     - glib
     - glib-networking
     - gnutls
@@ -270,12 +272,12 @@ requirements:
       - expat                              # [linux]
       - wayland-protocols                  # [linux]
       - wayland                            # [linux]
-  # run_exports:
-  #   - ${{ pin_compatible('gstreamer', max_pin='x.x') }}
-  #   - ${{ pin_compatible('gst-plugins-base', max_pin='x.x') }}
-  #   - ${{ pin_compatible('gst-plugins-good', max_pin='x.x') }}
-  #   - ${{ pin_compatible('gst-plugins-ugly', max_pin='x.x') }}
-  #   - ${{ pin_compatible('gst-plugins-bad', max_pin='x.x') }}
-  #   - ${{ pin_compatible('gst-libav', max_pin='x.x') }}
-  #   - ${{ pin_compatible('gst-python', max_pin='x.x') }}
-  #   - ${{ pin_compatible('gstreamer-orc', max_pin='x.x') }}
+  run_exports:
+    - ${{ pin_compatible('gstreamer', max_pin='x.x') }}
+    - ${{ pin_compatible('gst-plugins-base', max_pin='x.x') }}
+    - ${{ pin_compatible('gst-plugins-good', max_pin='x.x') }}
+    - ${{ pin_compatible('gst-plugins-ugly', max_pin='x.x') }}
+    - ${{ pin_compatible('gst-plugins-bad', max_pin='x.x') }}
+    - ${{ pin_compatible('gst-libav', max_pin='x.x') }}
+    - ${{ pin_compatible('gst-python', max_pin='x.x') }}
+    - ${{ pin_compatible('gstreamer-orc', max_pin='x.x') }}
