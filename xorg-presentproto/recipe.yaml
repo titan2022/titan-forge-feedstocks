@@ -1,0 +1,70 @@
+schema_version: 1
+
+context:
+  xorg_name: presentproto
+  xorg_category: proto
+  name: xorg-presentproto
+  version: 1.1
+  sha256: f69b23a8869f78a5898aaf53938b829c8165e597cda34f06024d43ee1e6d26b9
+  am_version: 1.15
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://www.x.org/releases/individual/${{ xorg_category }}/${{ xorg_name }}-${{ version }}.tar.bz2
+  sha256: ${{ sha256 }}
+  file_name: ${{ name }}-${{ version }}.tar.bz2
+
+build:
+  number: 1002
+  prefix_detection:
+    ignore_binary_files: true
+
+requirements:
+  build:
+    - if: win
+      then: m2-autoconf
+    - if: win
+      then: m2-automake${{ am_version }}
+    - if: win
+      then: m2-libtool
+    - if: unix
+      then: pkg-config
+    - if: win
+      then: m2-pkg-config
+    - if: win
+      then: m2-base
+    - if: unix
+      then: make
+    - if: win
+      then: m2-make
+    - if: unix
+      then: ${{ compiler('c') }}
+    - if: unix
+      then: ${{ stdlib("c") }}
+    - if: win
+      then: ${{ compiler('m2w64_c') }}
+    - if: win
+      then: ${{ stdlib("m2w64_c") }}
+  host:
+    - xorg-util-macros
+
+tests:
+  - script:
+      - if: not win
+        then: test -e $PREFIX/include/X11/extensions/presentproto.h
+
+about:
+  license: MIT
+  # license_file: COPYING
+  summary: Print extension headers
+  homepage: https://www.x.org/
+
+extra:
+  recipe-maintainers:
+    - epruesse
+    - pkgw
+
+

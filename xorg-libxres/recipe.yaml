@@ -1,0 +1,64 @@
+schema_version: 1
+
+context:
+  name: xorg-libxres
+  version: 1.2.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://gitlab.freedesktop.org/xorg/lib/libxres/-/archive/libXres-${{ version }}/libxres-libXres-${{ version }}.tar.gz
+  sha256: 651e5d131ebcd8dbe72eccc84f4fbfc754abc02fe825301db2f38102715be25b
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - pkg-config
+    - libtool
+    - if: unix
+      then: gnuconfig
+    - if: unix
+      then: autoconf
+    - if: unix
+      then: automake
+    - if: unix
+      then: make
+    - xorg-util-macros
+  host:
+    - xorg-util-macros
+    - xorg-libx11
+    - xorg-xorgproto
+    - xorg-libxext
+    - xorg-xextproto
+  run:
+    - xorg-libx11
+    - xorg-libxext
+
+tests:
+  - script:
+      - if: linux
+        then: test -e $PREFIX/lib/libXRes.so
+      - if: osx
+        then: test -e $PREFIX/lib/libXRes.dylib
+
+about:
+  summary: X-Resource extension client library
+  description: |
+    X-Resource is an extension that allows a client to query the X
+    server about its usage of various resources.  It should not be confused
+    with the X resource database access functions.
+  license: MIT
+  license_file: COPYING
+  homepage: https://gitlab.freedesktop.org/xorg/lib/libXRes
+  repository: https://gitlab.freedesktop.org/xorg/lib/libXRes
+
+extra:
+  recipe-maintainers:
+    - erykoff
+

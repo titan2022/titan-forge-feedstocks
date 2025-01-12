@@ -1,0 +1,72 @@
+# Directly converted from https://github.com/conda-forge/xorg-fontsproto-feedstock
+
+schema_version: 1
+
+context:
+  xorg_name: fontsproto
+  xorg_category: proto
+  name: xorg-fontsproto
+  version: 2.1.3
+  sha256: 259046b0dd9130825c4a4c479ba3591d6d0f17a33f54e294b56478729a6e5ab8
+  am_version: 1.15
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://www.x.org/releases/individual/${{ xorg_category }}/${{ xorg_name }}-${{ version }}.tar.bz2
+  sha256: ${{ sha256 }}
+  file_name: ${{ name }}-${{ version }}.tar.bz2
+
+build:
+  number: 1002
+  prefix_detection:
+    ignore_binary_files: true
+
+requirements:
+  build:
+    - if: win
+      then: m2-autoconf
+    - if: win
+      then: m2-automake${{ am_version }}
+    - if: win
+      then: m2-libtool
+    - if: unix
+      then: pkg-config
+    - if: win
+      then: m2-pkg-config
+    - if: win
+      then: m2-base
+    - if: unix
+      then: make
+    - if: win
+      then: m2-make
+    - if: unix
+      then: ${{ compiler('c') }}
+    - if: unix
+      then: ${{ stdlib("c") }}
+    - if: win
+      then: ${{ compiler('m2w64_c') }}
+    - if: win
+      then: ${{ stdlib("m2w64_c") }}
+  host:
+    - xorg-util-macros
+
+tests:
+  - script:
+      - if: not win
+        then: test -e $PREFIX/include/X11/fonts/FSproto.h
+
+about:
+  license: MIT
+  # license_file: COPYING
+  summary: Print extension headers
+  homepage: https://www.x.org/
+
+extra:
+  recipe-maintainers:
+    - epruesse
+    - pkgw
+
+

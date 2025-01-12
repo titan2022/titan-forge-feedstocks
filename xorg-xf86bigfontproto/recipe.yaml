@@ -1,0 +1,67 @@
+schema_version: 1
+
+context:
+  xorg_name: xf86bigfontproto
+  xorg_category: proto
+  name: xorg-xf86bigfontproto
+  version: 1.2.0
+  sha256: ba9220e2c4475f5ed2ddaa7287426b30089e4d29bd58d35fad57ba5ea43e1648
+  am_version: 1.15
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://www.x.org/releases/individual/${{ xorg_category }}/${{ xorg_name }}-${{ version }}.tar.bz2
+  sha256: ${{ sha256 }}
+  file_name: ${{ name }}-${{ version }}.tar.bz2
+
+build:
+  number: 1002
+  prefix_detection:
+    ignore_binary_files: true
+
+requirements:
+  build:
+    - if: win
+      then: m2-autoconf
+    - if: win
+      then: m2-automake${{ am_version }}
+    - if: win
+      then: m2-libtool
+    - pkg-config
+    - if: win
+      then: m2-base
+    - if: unix
+      then: make
+    - if: win
+      then: m2-make
+    - if: unix
+      then: ${{ compiler('c') }}
+    - if: unix
+      then: ${{ stdlib("c") }}
+    - if: win
+      then: ${{ compiler('m2w64_c') }}
+    - if: win
+      then: ${{ stdlib("m2w64_c") }}
+  host:
+    - xorg-util-macros
+
+tests:
+  - script:
+      - if: not win
+        then: test -e $PREFIX/include/X11/extensions/xf86bigfproto.h
+
+about:
+  license: MIT
+  # license_file: COPYING
+  summary: Print extension headers
+  homepage: https://www.x.org/
+
+extra:
+  recipe-maintainers:
+    - epruesse
+    - pkgw
+
+
