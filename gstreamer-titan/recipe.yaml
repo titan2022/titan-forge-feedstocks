@@ -24,7 +24,8 @@ about:
 build:
   number: 0
   script: build-gstreamer.sh
-      
+  skip:
+    - aarch64
 
 requirements:
   build:
