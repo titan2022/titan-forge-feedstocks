@@ -1,0 +1,12 @@
+cdt_name:
+- cos7
+c_stdlib:
+- sysroot
+# gstreamer requires glibc >= 2.19
+c_stdlib_version:
+- 2.34
+
+# rust_compiler:
+# - rust
+# rust_compiler_version:
+# - 1.84.0
