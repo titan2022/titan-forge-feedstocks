@@ -11,12 +11,23 @@ on:
 
 jobs:
 
+  trigger-gitlab-ci:
+    name: Trigger GitLab CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: trigger Job
+      uses: ghcr.io/appleboy/gitlab-ci-action@v1.3.0
+      with:
+        host: "http://example.com"
+        token: ${{ secrets.TOKEN }}
+        project_id: 100
+
   build:
     strategy:
       matrix:
         include:
           - { target: linux-64,  os: ubuntu-22.04 }
-          - { target: linux-aarch64, os: ubuntu-22.04 }
+          # - { target: linux-aarch64, os: ubuntu-22.04 }
           # - { target: win-64,    os: windows-latest }
           # # force older macos-13 to get x86_64 runners
           # - { target: osx-64,    os: macos-13 }
