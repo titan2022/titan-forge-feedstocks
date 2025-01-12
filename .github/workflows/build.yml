@@ -16,11 +16,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: trigger Job
-        uses: appleboy/gitlab-ci-action@v1.3.0
-        with:
-          host: "http://gitlab.com"
+        env:
+          host: "https://gitlab.com"
           token: ${{ secrets.GITLAB_PIPELINE_TRIGGER_TOKEN }}
           project_id: 66078136
+          ref_name: main
+        shell: bash
+        run: |
+          curl --request POST \
+            --form token="$token" \
+            --form ref="$ref_name" \
+            "$host/api/v4/projects/$project_id/trigger/pipeline"
 
   build:
     strategy:
