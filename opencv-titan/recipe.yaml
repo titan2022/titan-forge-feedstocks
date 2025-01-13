@@ -21,7 +21,6 @@ source:
 build:
   number: 3
   script: opencl-build.sh
-  skip: true
 
 requirements:
   build:
