@@ -72,7 +72,7 @@ meson_args=(
     -Dgst-examples=disabled
     -Dnls=disabled
     -Dtests=disabled
-    -Dgst-plugins-rs=disabled
+    -Drs=disabled
 )
 
 meson setup "${meson_args[@]}" $EXTRA_FLAGS ..
