@@ -15,7 +15,7 @@ fi
 
 export PKG_CONFIG="$(which pkg-config)"
 
-export CPPFLAGS="-D_REENTRANT"
+export CPPFLAGS="-D_REENTRANT -D_X_NONSTRING -Wno-macro-redefined"
 
 meson_args=(
     --buildtype=release
