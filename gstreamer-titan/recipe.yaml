@@ -199,20 +199,17 @@ requirements:
       then: zbar                               # [linux or osx]
     - if: linux
       then:
-      - ${{ cdt('mesa-libgl-devel') }}  # [linux]
-      - ${{ cdt('mesa-libegl-devel') }}  # [linux]
-      - ${{ cdt('mesa-libgbm') }}  # [linux]
-      - ${{ cdt('libdrm-devel') }}  # [linux]
-      - ${{ cdt('mesa-dri-drivers') }}  # [linux]
+      - libdrm
+      # - ${{ cdt('mesa-dri-drivers') }}  # [linux]
       - libglvnd-devel
       - libglx-devel
       - libegl-devel
       - libgles-devel
       - libopengl-devel
-      - ${{ cdt('libxshmfence-devel') }}  # [linux]
-      - ${{ cdt('kernel-headers') }}  # [linux]
-      - ${{ cdt('mesa-khr-devel') }}  # [linux]
-      - ${{ cdt('libselinux-devel') }}  # [linux]
+      - xorg-libxshmfence
+      - kernel-headers
+      # - ${{ cdt('mesa-khr-devel') }}  # [linux]
+      # - ${{ cdt('libselinux-devel') }}  # [linux]
   run:
     # - python ${{ python }}
     # - pygobject
