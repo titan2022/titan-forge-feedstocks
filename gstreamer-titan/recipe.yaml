@@ -22,8 +22,9 @@ about:
   repository: https://gitlab.freedesktop.org/gstreamer/gstreamer
 
 build:
-  number: 2
+  number: 4
   script: build-gstreamer.sh
+  skip: true
 
 requirements:
   build:
@@ -184,8 +185,6 @@ requirements:
       - xorg-libxinerama                   # [linux]
       - xorg-xproto                        # [linux]
       - xorg-libx11                        # [linux]
-      - if: x86_64
-        then: xorg-xorgproto < 2023
       - expat                              # [linux]
       - wayland-protocols                  # [linux]
       - wayland                            # [linux]
@@ -201,26 +200,20 @@ requirements:
       then: zbar                               # [linux or osx]
     - if: linux
       then:
-      - libdrm
-      # - ${{ cdt('mesa-dri-drivers') }}  # [linux]
+      - ${{ cdt('mesa-libgl-devel') }}  # [linux]
+      - ${{ cdt('mesa-libegl-devel') }}  # [linux]
+      - ${{ cdt('mesa-libgbm') }}  # [linux]
+      - ${{ cdt('libdrm-devel') }}  # [linux]
+      - ${{ cdt('mesa-dri-drivers') }}  # [linux]
       - libglvnd-devel
       - libglx-devel
       - libegl-devel
       - libgles-devel
       - libopengl-devel
-      - xorg-libxshmfence
-      - if: linux
-        then:
-        - if: x86_64
-          then: kernel-headers_linux-64
-        - if: aarch64
-          then: kernel-headers_linux-aarch64
-        - if: ppc64le
-          then: kernel-headers_linux-ppc64le
-        - if: s390x
-          then: kernel-headers_linux-s390x
-      # - ${{ cdt('mesa-khr-devel') }}  # [linux]
-      # - ${{ cdt('libselinux-devel') }}  # [linux]
+      - ${{ cdt('libxshmfence-devel') }}  # [linux]
+      - ${{ cdt('kernel-headers') }}  # [linux]
+      - ${{ cdt('mesa-khr-devel') }}  # [linux]
+      - ${{ cdt('libselinux-devel') }}  # [linux]
   run:
     # - python ${{ python }}
     # - pygobject

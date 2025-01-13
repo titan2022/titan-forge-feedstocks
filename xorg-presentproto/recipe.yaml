@@ -18,7 +18,7 @@ source:
   file_name: ${{ name }}-${{ version }}.tar.bz2
 
 build:
-  number: 1002
+  number: 1003
   prefix_detection:
     ignore_binary_files: true
 

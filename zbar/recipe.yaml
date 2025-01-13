@@ -14,7 +14,7 @@ source:
     - 0001-Add-cstddef-header-to-zbar.h-for-NULL.patch
 
 build:
-  number: 1002
+  number: 1003
   skip: win
 
 requirements:

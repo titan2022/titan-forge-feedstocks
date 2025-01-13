@@ -1,10 +1,10 @@
 cdt_name:
-- alma9
+- cos7
 c_stdlib:
 - sysroot
 # gstreamer requires glibc >= 2.19
 c_stdlib_version:
-- 2.34
+- 2.17
 
 # rust_compiler:
 # - rust
