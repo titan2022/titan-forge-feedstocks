@@ -24,7 +24,6 @@ about:
 build:
   number: 5
   script: build-gstreamer.sh
-  skip: true
 
 requirements:
   build:
