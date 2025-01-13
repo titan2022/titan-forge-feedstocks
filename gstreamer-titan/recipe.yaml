@@ -22,7 +22,7 @@ about:
   repository: https://gitlab.freedesktop.org/gstreamer/gstreamer
 
 build:
-  number: 5
+  number: 6
   script: build-gstreamer.sh
 
 requirements:
