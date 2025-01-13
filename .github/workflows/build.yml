@@ -28,58 +28,58 @@ jobs:
             --form ref="$ref_name" \
             "$host/api/v4/projects/$project_id/trigger/pipeline"
 
-  build:
-    strategy:
-      matrix:
-        include:
-          # - { target: linux-64,  os: ubuntu-22.04 }
-          # - { target: linux-aarch64, os: ubuntu-22.04 }
-          # - { target: win-64,    os: windows-latest }
-          # # force older macos-13 to get x86_64 runners
-          # - { target: osx-64,    os: macos-13 }
-          # - { target: osx-arm64, os: macos-14 }
-      fail-fast: false
+  # build:
+  #   strategy:
+  #     matrix:
+  #       include:
+  #         # - { target: linux-64,  os: ubuntu-22.04 }
+  #         # - { target: linux-aarch64, os: ubuntu-22.04 }
+  #         # - { target: win-64,    os: windows-latest }
+  #         # # force older macos-13 to get x86_64 runners
+  #         # - { target: osx-64,    os: macos-13 }
+  #         # - { target: osx-arm64, os: macos-14 }
+  #     fail-fast: false
 
-    runs-on: ${{ matrix.os }}
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 2
-    - uses: prefix-dev/setup-pixi@v0.8.1
-      with:
-        pixi-version: v0.39.5
+  #   runs-on: ${{ matrix.os }}
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #     with:
+  #       fetch-depth: 2
+  #   - uses: prefix-dev/setup-pixi@v0.8.1
+  #     with:
+  #       pixi-version: v0.39.5
 
-    - name: Add .pixi/envs/default to the $PATH
-      shell: bash
-      run: |
-        echo "$(pwd)/.pixi/envs/default/bin" >> $GITHUB_PATH
+  #   - name: Add .pixi/envs/default to the $PATH
+  #     shell: bash
+  #     run: |
+  #       echo "$(pwd)/.pixi/envs/default/bin" >> $GITHUB_PATH
 
-    - name: (debug) print $PATH
-      shell: bash
-      run: |
-        echo "$PATH"
-        which rattler-build
+  #   - name: (debug) print $PATH
+  #     shell: bash
+  #     run: |
+  #       echo "$PATH"
+  #       which rattler-build
 
-    - name: Run code in changed subdirectories
-      shell: bash
-      env:
-        TARGET_PLATFORM: ${{ matrix.target }}
+  #   - name: Run code in changed subdirectories
+  #     shell: bash
+  #     env:
+  #       TARGET_PLATFORM: ${{ matrix.target }}
 
-      run: |
-        rattler-build build --recipe-dir . \
-          --skip-existing=all --target-platform=$TARGET_PLATFORM \
-          -c https://prefix.dev/titan-forge -c conda-forge 
-      #   --experimental $(for file in **/variants.yaml; do echo "-m$file"; done) 
-      # no longer necessary because it should be discovered by default
+  #     run: |
+  #       rattler-build build --recipe-dir . \
+  #         --skip-existing=all --target-platform=$TARGET_PLATFORM \
+  #         -c https://prefix.dev/titan-forge -c conda-forge 
+  #     #   --experimental $(for file in **/variants.yaml; do echo "-m$file"; done) 
+  #     # no longer necessary because it should be discovered by default
 
-    - name: Upload all packages
-      shell: bash
-      # do not upload on PR
-      if: github.event_name == 'push'
-      env:
-        PREFIX_API_KEY: ${{ secrets.PREFIX_API_KEY }}
-      run: |
-        # ignore errors because we want to ignore duplicate packages
-        for file in output/**/*.conda; do
-          rattler-build upload prefix -c titan-forge "$file" || true
-        done
+  #   - name: Upload all packages
+  #     shell: bash
+  #     # do not upload on PR
+  #     if: github.event_name == 'push'
+  #     env:
+  #       PREFIX_API_KEY: ${{ secrets.PREFIX_API_KEY }}
+  #     run: |
+  #       # ignore errors because we want to ignore duplicate packages
+  #       for file in output/**/*.conda; do
+  #         rattler-build upload prefix -c titan-forge "$file" || true
+  #       done
