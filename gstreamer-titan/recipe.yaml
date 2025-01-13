@@ -188,7 +188,7 @@ requirements:
       - wayland-protocols                  # [linux]
       - wayland                            # [linux]
     - fluidsynth
-    - opencv
+    # - opencv
     - onnxruntime
     - if: linux
       then: speex                              # [linux]
