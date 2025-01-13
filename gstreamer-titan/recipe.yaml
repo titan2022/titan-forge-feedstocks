@@ -213,6 +213,8 @@ requirements:
       - ${{ cdt('kernel-headers') }}  # [linux]
       - ${{ cdt('mesa-khr-devel') }}  # [linux]
       - ${{ cdt('libselinux-devel') }}  # [linux]
+    - iconv
+    - libiconv
   run:
     # - python ${{ python }}
     # - pygobject
