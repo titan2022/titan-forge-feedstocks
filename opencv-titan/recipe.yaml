@@ -74,11 +74,7 @@ requirements:
     - qt6-main                       # [qt_version == 6]
     - zlib
     - libopenvino-dev                # [not ppc64le]
-    - gstreamer
-    - gst-plugins-base
-    - gst-plugins-good
-    - gst-plugins-ugly
-    - gst-plugins-bad
+    - gstreamer-titan
     - glew
     - tbb
     - libtheora
@@ -102,6 +98,8 @@ requirements:
     # libxine, librealsense, libv4l, libopencore-amrnb, libopencore-amrwb,
     # 
     # We will want to enable librealsense, libv4l later
+  run:
+    - gstreamer-titan
 
 # tests:
 #   - python:

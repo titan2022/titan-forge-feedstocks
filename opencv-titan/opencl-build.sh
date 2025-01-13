@@ -15,6 +15,7 @@ extra_cmake_args=(
     -D WITH_FFMPEG=ON
     -D WITH_GSTREAMER=ON
     -D WITH_TBB=ON
+    -D WITH_V4L=ON
     -D BUILD_TBB=OFF
     -D BUILD_TESTS=OFF
     -D WITH_EIGEN=ON
