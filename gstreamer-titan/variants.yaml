@@ -1,5 +1,5 @@
 cdt_name:
-- cos7
+- alma9
 c_stdlib:
 - sysroot
 # gstreamer requires glibc >= 2.19
