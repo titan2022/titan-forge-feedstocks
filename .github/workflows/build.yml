@@ -68,7 +68,7 @@ jobs:
       run: |
         rattler-build build --recipe-dir . \
           --skip-existing=all --target-platform=$TARGET_PLATFORM \
-          -c conda-forge -c https://prefix.dev/titan-forge
+          -c https://prefix.dev/titan-forge -c conda-forge 
       #   --experimental $(for file in **/variants.yaml; do echo "-m$file"; done) 
       # no longer necessary because it should be discovered by default
 
