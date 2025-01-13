@@ -207,7 +207,16 @@ requirements:
       - libgles-devel
       - libopengl-devel
       - xorg-libxshmfence
-      - kernel-headers_linux
+      - if: linux
+        then:
+        - if: x86_64
+          then: kernel-headers_linux-64
+        - if: aarch64
+          then: kernel-headers_linux-aarch64
+        - if: ppc64le
+          then: kernel-headers_linux-ppc64le
+        - if: s390x
+          then: kernel-headers_linux-s390x
       # - ${{ cdt('mesa-khr-devel') }}  # [linux]
       # - ${{ cdt('libselinux-devel') }}  # [linux]
   run:
