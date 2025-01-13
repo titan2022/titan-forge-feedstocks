@@ -24,6 +24,7 @@ about:
 build:
   number: 4
   script: build-gstreamer.sh
+  skip: true
 
 requirements:
   build:
@@ -182,7 +183,7 @@ requirements:
       - xorg-libxpm                        # [linux]
       - xorg-xineramaproto                 # [linux]
       - xorg-libxinerama                   # [linux]
-      - xorg-xproto                        # [linux]
+      - xorg-xorgproto                        # [linux]
       - xorg-libx11                        # [linux]
       - expat                              # [linux]
       - wayland-protocols                  # [linux]
