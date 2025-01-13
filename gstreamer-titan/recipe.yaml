@@ -269,12 +269,12 @@ requirements:
       - expat                              # [linux]
       - wayland-protocols                  # [linux]
       - wayland                            # [linux]
-  run_exports:
-    - ${{ pin_compatible('gstreamer', upper_bound='x.x') }}
-    - ${{ pin_compatible('gst-plugins-base', upper_bound='x.x') }}
-    - ${{ pin_compatible('gst-plugins-good', upper_bound='x.x') }}
-    - ${{ pin_compatible('gst-plugins-ugly', upper_bound='x.x') }}
-    - ${{ pin_compatible('gst-plugins-bad', upper_bound='x.x') }}
-    - ${{ pin_compatible('gst-libav', upper_bound='x.x') }}
-    - ${{ pin_compatible('gst-python', upper_bound='x.x') }}
-    - ${{ pin_compatible('gstreamer-orc', upper_bound='x.x') }}
+  # run_exports:
+  #   - ${{ pin_compatible('gstreamer', upper_bound='x.x') }}
+  #   - ${{ pin_compatible('gst-plugins-base', upper_bound='x.x') }}
+  #   - ${{ pin_compatible('gst-plugins-good', upper_bound='x.x') }}
+  #   - ${{ pin_compatible('gst-plugins-ugly', upper_bound='x.x') }}
+  #   - ${{ pin_compatible('gst-plugins-bad', upper_bound='x.x') }}
+  #   - ${{ pin_compatible('gst-libav', upper_bound='x.x') }}
+  #   - ${{ pin_compatible('gst-python', upper_bound='x.x') }}
+  #   - ${{ pin_compatible('gstreamer-orc', upper_bound='x.x') }}
