@@ -21,8 +21,7 @@ source:
 build:
   number: 2
   script: opencl-build.sh
-  skip:
-    - aarch64
+  skip: true
 
 requirements:
   build:
