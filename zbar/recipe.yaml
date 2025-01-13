@@ -1,0 +1,70 @@
+schema_version: 1
+
+context:
+  version: 0.10
+
+package:
+  name: zbar
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ethanc8/someblobs/releases/download/zbar-0.10/zbar-0.10.tar.bz2
+  sha256: 234efb39dbbe5cef4189cc76f37afbe3cfcfb45ae52493bfe8e191318bdbadc6
+  patches:
+    - 0001-Add-cstddef-header-to-zbar.h-for-NULL.patch
+
+build:
+  number: 1002
+  skip: win
+
+requirements:
+  build:
+    - if: unix
+      then: 
+        - libtool
+        - gettext
+        - gnuconfig
+        - autoconf
+        - automake
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - if: unix
+      then: make
+  host:
+    - libjpeg-turbo
+  run:
+    - libjpeg-turbo
+
+tests:
+  - script:
+      - if: unix
+        then: "bash -c \"test -f $PREFIX/lib/libzbar.a\""
+      - if: linux
+        then: "bash -c \"test -f $PREFIX/lib/libzbar.so\""
+      - if: osx
+        then: "bash -c \"test -f $PREFIX/lib/libzbar.dylib\""
+      - if: unix
+        then: "bash -c \"test -d $PREFIX/include/zbar && test -f $PREFIX/include/zbar/ImageScanner.h\""
+
+about:
+  license: LGPL-2.1-only
+  # license_file: COPYING
+  summary: Zbar barcode reader library
+  description: |
+    ZBar is an open source software suite for reading bar codes from various
+    sources, such as video streams, image files and raw intensity sensors. It
+    supports many popular symbologies (types of bar codes) including
+    EAN-13/UPC-A, UPC-E, EAN-8, Code 128, Code 39, Interleaved 2 of 5 and QR
+    Code.
+  homepage: http://zbar.sourceforge.net/
+  repository: https://github.com/ZBar/ZBar
+  documentation: https://sourceforge.net/projects/zbar/
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
+    # Stopped exiting
+    # - kdmurray91
+    # Just adding myself here to help from time to time
+    - hmaarrfk
+
