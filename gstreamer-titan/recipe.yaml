@@ -207,7 +207,7 @@ requirements:
       - libgles-devel
       - libopengl-devel
       - xorg-libxshmfence
-      - kernel-headers
+      - kernel-headers_linux
       # - ${{ cdt('mesa-khr-devel') }}  # [linux]
       # - ${{ cdt('libselinux-devel') }}  # [linux]
   run:
