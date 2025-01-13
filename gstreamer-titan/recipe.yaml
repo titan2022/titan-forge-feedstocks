@@ -184,6 +184,8 @@ requirements:
       - xorg-libxinerama                   # [linux]
       - xorg-xproto                        # [linux]
       - xorg-libx11                        # [linux]
+      - if: x86_64
+        then: xorg-xorgproto < 2023
       - expat                              # [linux]
       - wayland-protocols                  # [linux]
       - wayland                            # [linux]
