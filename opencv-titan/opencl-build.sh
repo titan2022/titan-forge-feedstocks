@@ -39,10 +39,10 @@ extra_cmake_args=(
 )
 
 
-if [[ "${target_platform}" != "${build_platform}" ]]; then
-    extra_cmake_args+=("-DProtobuf_PROTOC_EXECUTABLE=$BUILD_PREFIX/bin/protoc")
-    extra_cmake_args+=("-DQT_HOST_PATH=${BUILD_PREFIX}")
-fi
+# if [[ "${target_platform}" != "${build_platform}" ]]; then
+extra_cmake_args+=("-DProtobuf_PROTOC_EXECUTABLE=$BUILD_PREFIX/bin/protoc")
+extra_cmake_args+=("-DQT_HOST_PATH=${BUILD_PREFIX}")
+# fi
 
 cmake -GNinja ${CMAKE_ARGS} "${extra_cmake_args[@]}" \
     -DCMAKE_PREFIX_PATH="$PREFIX" \
