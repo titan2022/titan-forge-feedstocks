@@ -223,8 +223,6 @@ requirements:
     - if: linux
       then:
       - ${{ cdt('xorg-x11-server-xvfb') }}  # [linux]
-      - pulseaudio                         # [linux]
-      - pulseaudio-client                  # [linux]
       - xcb-proto                          # [linux]
       - libxcb                             # [linux]
       - xorg-kbproto                       # [linux]
