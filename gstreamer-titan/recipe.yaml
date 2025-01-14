@@ -139,8 +139,6 @@ requirements:
       - libudev                            # [linux]
       - jack                               # [linux]
       - pthread-stubs                      # [linux]
-      - pulseaudio
-      - pulseaudio-client                  # [linux]
       - alsa-lib                           # [linux]
       - mesalib                            # [linux]
       - xcb-proto                          # [linux]
