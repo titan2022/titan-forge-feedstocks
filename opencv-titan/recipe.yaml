@@ -76,7 +76,7 @@ requirements:
     - if: not aarch64
       then: gstreamer-titan
     - if: aarch64
-      then: gstreamer-titan 1.24.11 h06d5425_7
+      then: gstreamer-titan ==1.24.11 h06d5425_7
     - glew
     - tbb
     - libtheora
@@ -104,7 +104,7 @@ requirements:
     - if: not aarch64
       then: gstreamer-titan
     - if: aarch64
-      then: gstreamer-titan 1.24.11 h06d5425_7
+      then: gstreamer-titan ==1.24.11 h06d5425_7
 
 # tests:
 #   - python:
