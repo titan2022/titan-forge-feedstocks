@@ -24,6 +24,7 @@ about:
 build:
   number: 8
   script: build-gstreamer.sh
+  skip: aarch64 # aarch64 build 7 is equivalent to x86_64 build 8
 
 requirements:
   build:
