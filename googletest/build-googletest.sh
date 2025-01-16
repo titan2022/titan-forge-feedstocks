@@ -8,6 +8,7 @@ extra_cmake_args=(
     -DCMAKE_INSTALL_LIBDIR=lib
     -DCMAKE_VERBOSE_MAKEFILE=ON
     -DGTEST_CREATE_SHARED_LIBRARY=1
+    -DBUILD_SHARED_LIBS=ON
 )
 
 cmake -GNinja ${CMAKE_ARGS} "${extra_cmake_args[@]}" \
