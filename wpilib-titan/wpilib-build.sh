@@ -5,7 +5,6 @@ mkdir build-cmake
 cd build-cmake
 
 extra_cmake_args=(
-    -D CMAKE_BUILD_TYPE=RELEASE
     -D BUILD_SHARED_LIBS=ON
     -D WITH_CSCORE=OFF # cscore requires OpenCV
     -D WITH_EXAMPLES=OFF
