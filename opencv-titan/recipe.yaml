@@ -19,7 +19,7 @@ source:
 
 
 build:
-  number: 3
+  number: 4
   script: opencl-build.sh
   # skip: true
 
@@ -46,8 +46,6 @@ requirements:
     - libegl-devel                       # [linux and (qt_version == 5 or qt_version == 6)]
     - python
     - numpy
-    # I'm not sure why the conda-forge packagers pinned this version.
-    - eigen =3.4.0
     # Specify lgpl version of ffmpeg so that there are
     # no quesitons about the license of the resulting opencv
     # binary
