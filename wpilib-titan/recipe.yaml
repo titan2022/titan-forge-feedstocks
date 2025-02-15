@@ -1,0 +1,43 @@
+context:
+  version: "2025.3.1"
+
+package:
+  name: wpilib-titan
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/wpilibsuite/allwpilib/archive/refs/tags/v${{ version }}.zip
+    sha256: 41dee5daa5e6c4330df2a1d5e810a19be3cfbacf2a0df097897e064d0ef04570
+
+
+build:
+  number: 0
+  script: wpilib-build.sh
+  # skip: true
+
+requirements:
+  build:
+    - libprotobuf
+    - pkg-config
+    - cmake
+    - ninja
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('fortran') }}
+  host:
+    - protobuf
+
+about:
+  homepage: https://docs.wpilib.org/
+  license: BSD-3-Clause
+  license_file: LICENSE.md
+  summary: Parts of WPILib for coprocessor use
+  description: Parts of WPILib for coprocessor use, including ntcore and wpimath
+  documentation: https://docs.wpilib.org/
+  repository: https://github.com/wpilibsuite/allwpilib
+
+extra:
+  recipe-maintainers:
+    - ethanc8
+
