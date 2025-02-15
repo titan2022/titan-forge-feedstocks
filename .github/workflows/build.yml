@@ -10,30 +10,12 @@ on:
       - master
 
 jobs:
-
-  trigger-gitlab-ci:
-    name: Trigger GitLab CI
-    runs-on: ubuntu-latest
-    steps:
-      - name: trigger Job
-        env:
-          host: "https://gitlab.com"
-          token: ${{ secrets.GITLAB_PIPELINE_TRIGGER_TOKEN }}
-          project_id: 66078136
-          ref_name: main
-        shell: bash
-        run: |
-          curl --request POST \
-            --form token="$token" \
-            --form ref="$ref_name" \
-            "$host/api/v4/projects/$project_id/trigger/pipeline"
-
   build:
     strategy:
       matrix:
         include:
           - { target: linux-64,  os: ubuntu-22.04 }
-          # - { target: linux-aarch64, os: ubuntu-22.04 }
+          - { target: linux-aarch64, os: ubuntu-22.04-arm }
           # - { target: win-64,    os: windows-latest }
           # # force older macos-13 to get x86_64 runners
           # - { target: osx-64,    os: macos-13 }
