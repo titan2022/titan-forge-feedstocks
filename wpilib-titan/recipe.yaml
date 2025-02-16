@@ -11,13 +11,12 @@ source:
 
 
 build:
-  number: 0
+  number: 1
   script: wpilib-build.sh
   # skip: true
 
 requirements:
   build:
-    - libprotobuf
     - pkg-config
     - cmake
     - ninja
@@ -25,8 +24,6 @@ requirements:
     - ${{ compiler('c') }}
     - ${{ compiler('cxx') }}
     - ${{ compiler('fortran') }}
-  host:
-    - protobuf
 
 about:
   homepage: https://docs.wpilib.org/

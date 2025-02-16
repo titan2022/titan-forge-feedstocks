@@ -15,7 +15,7 @@ extra_cmake_args=(
     -D WITH_TESTS=OFF
     -D WITH_WPILIB=OFF # wpilib is big and might be annoying to build
     -D WITH_WPIMATH=ON
-    -D WITH_PROTOBUF=ON
+    -D WITH_PROTOBUF=OFF
 )
 
 extra_cmake_args+=(
